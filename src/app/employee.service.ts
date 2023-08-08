@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from './app.domain';
 import { environment } from 'src/environments/environment.development';
+import { EmployeeDTO } from './app.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +16,12 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.apiServerUrl}`) ?? [];
   }
 
-  public addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(`${this.apiServerUrl}/create`, employee);
+  public addEmployee(employeeDTO: EmployeeDTO): Observable<Employee> {
+    return this.http.post<Employee>(`${this.apiServerUrl}/create`, employeeDTO);
   }
 
-  public updateEmployee(employee: Employee): Observable<Employee> {
-    return this.http.put<Employee>(`${this.apiServerUrl}/update`, employee);
+  public updateEmployee(employeeDTO: EmployeeDTO): Observable<Employee> {
+    return this.http.put<Employee>(`${this.apiServerUrl}/update`, employeeDTO);
   }
 
   public deleteEmployee(employeeId: number): Observable<void> {
